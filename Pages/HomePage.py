@@ -1,96 +1,83 @@
 
-# import os,sys
-# myPath = os.path.dirname(os.path.abspath(__file__))
-# sys.path.insert(0, myPath + '/../')
+import os,sys
+myPath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, myPath + '/../')
 
-# import time
-# from Locators.Locators import Locators
-# from Pages.BasePage import BasePage
-# from EnumsPackage.Enums import Products, Products_Z_To_A, Sort_Products
+import time
+from Locators.Locators import Locators
+from Pages.BasePage import BasePage
+from EnumsPackage.Enums import Beauty, Clothing, Homeware, Stationery
+from selenium.webdriver.common.action_chains import ActionChains
 
-# class HomePage(BasePage):
+class HomePage(BasePage):
  
-#     def __init__(self, driver):
-#         super().__init__(driver)
+    def __init__(self, driver):
+        super().__init__(driver)
 
-#     '''Title'''
-#     def get_home_page_title(self, title):
-#         return self.get_title(title)
+    # '''Title'''
+    # def get_home_page_title(self, title):
+    #     return self.get_title(title)
 
-#     '''To check Cart icon'''
-#     def is_cart_icon_exist(self):
-#         return self.is_visible(Locators.CART_ICON)
+    # '''To check Cart icon'''
+    # def is_cart_icon_exist(self):
+    #     return self.is_visible(Locators.CART_ICON)
 
-#     '''To get h1 tag text'''
-#     def get_header_value(self):
-#         return self.get_element_text(Locators.HEADER)
+    # '''To get h1 tag text'''
+    # def get_header_value(self):
+    #     return self.get_element_text(Locators.HEADER)
 
-#     '''Product sorting container functionality'''
-#     def product_sort_container(self):
-#         for sorting in Sort_Products:
-#             sorting = self.driver.find_element_by_xpath(
-#                 "(//*[@class='product_sort_container']//option)[%s]" % str(sorting.value))
-#             sorting.click()
+    '''Product sorting container functionality'''
+    def clickClothingTab(self):
+        self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
+        for sorting in Clothing:
+            element = self.driver.find_element_by_link_text("Clothing")
+            action = ActionChains(self.driver)
+            action.click(on_element = element)
+            action.perform()
+            sorting = self.driver.find_element_by_xpath(
+                "//li[@class='nav-dropdown__item ']//a[contains(text(),'%s')]" % str(sorting.value))
+            time.sleep(3)
+            sorting.click()
+        # self.driver.find_element_by_xpath("(//a[@href = '/account/login'])[2]").click()
+        # self.driver.find_element_by_xpath("//*[@id='account-popover']/div/div/a[4]").click()
 
-#     '''To sort products in low to high range'''
-#     def product_sort_container_low_to_high(self):
-#         lowToHighSortedProducts = self.driver.find_element_by_xpath(
-#             "(//*[@class='product_sort_container']//option)[%s]" % str(Sort_Products.PRICE_LOW_TO_HIGH.value))
-#         lowToHighSortedProducts.click()
-#         priceList = []
-#         lowToHighSortedProductsPrice = self.driver.find_elements_by_class_name("inventory_item_price")
-#         for price in lowToHighSortedProductsPrice:
-#             priceList.append(price.text.replace("$",""))
-#             print(priceList)
-#         assert priceList[0]<priceList[1], "products are not sorted"
+    def clickHomeWareTab(self):
+        for sorting in Homeware:
+            element = self.driver.find_element_by_link_text("Homeware")
+            action = ActionChains(self.driver)
+            action.click(on_element = element)
+            action.perform()
+            sorting = self.driver.find_element_by_xpath(
+                "//li[@class='nav-dropdown__item ']//a[contains(text(),'%s')]" % str(sorting.value))
+            time.sleep(3)
+            sorting.click()
 
-#     '''To sort products in high to low range'''
-#     def product_sort_container_High_to_Low(self):
-#         highToLowSortedProducts = self.driver.find_element_by_xpath(
-#             "(//*[@class='product_sort_container']//option)[%s]" % str(Sort_Products.PRICE_HIGH_TO_LOW.value))
-#         highToLowSortedProducts.click()
-#         priceListHighToLow = []
-#         highToLowSortedProductsPrice = self.driver.find_elements_by_class_name("inventory_item_price")
-#         for price in highToLowSortedProductsPrice:
-#             priceListHighToLow.append(price.text.replace("$",""))
-#             print(priceListHighToLow)
-#         assert priceListHighToLow[0]>priceListHighToLow[1], "products are not sorted"
+    def clickStationeryTab(self):
+        for sorting in Stationery:
+            element = self.driver.find_element_by_link_text("Stationery")
+            action = ActionChains(self.driver)
+            action.click(on_element = element)
+            action.perform()
+            sorting = self.driver.find_element_by_xpath(
+                "//li[@class='nav-dropdown__item ']//a[contains(text(),'%s')]" % str(sorting.value))
+            time.sleep(3)
+            sorting.click()
 
-#     '''To sort products in Z to A name range'''
-#     def sort_products_by_Z_To_A(self):
-#         sortProductsByZtoAFormat = self.driver.find_element_by_xpath(
-#             "(//*[@class='product_sort_container']//option)[%s]" % str(Sort_Products.NAME_Z_A.value))
-#         sortProductsByZtoAFormat.click()
-#         productsByZToAFormatList = []
-#         for zToAFormat in Products_Z_To_A:
-#             gettingProductsInZtoAformat  = self.driver.find_element_by_xpath(
-#                      "//*[contains(text(),'%s')]" % str(zToAFormat.value)) 
-#             productsByZToAFormatList.append(gettingProductsInZtoAformat.text)
-#             print(productsByZToAFormatList)
-#             assert gettingProductsInZtoAformat.text == zToAFormat.value 
+    def clickBeautyTab(self):
+        for sorting in Beauty:
+            element = self.driver.find_element_by_link_text("Beauty")
+            action = ActionChains(self.driver)
+            action.click(on_element = element)
+            action.perform()
+            sorting = self.driver.find_element_by_xpath(
+                "//li[@class='nav-dropdown__item ']//a[contains(text(),'%s')]" % str(sorting.value))
+            time.sleep(3)
+            sorting.click()
 
-#     '''To sort products in Z to A name range'''
-#     def sort_products_by_A_To_Z(self):
-#         sortProductsByAtoZFormat = self.driver.find_element_by_xpath(
-#             "(//*[@class='product_sort_container']//option)[%s]" % str(Sort_Products.NAME_A_TO_Z.value))
-#         sortProductsByAtoZFormat.click()
-#         productsByAToZFormatList = []
-#         for getValue in Products:
-#             gettingProductsInAtoZformat  = self.driver.find_element_by_xpath(
-#                      "//*[contains(text(),'%s')]" % str(getValue.value)) 
-#             productsByAToZFormatList.append(gettingProductsInAtoZformat.text)
-#             print(productsByAToZFormatList)
-#             assert gettingProductsInAtoZformat.text == getValue.value 
-        
-#     ''' Add to Cart functionality'''
-#     def do_shopping(self):
-#         for product in Products:
-#             product = self.driver.find_element_by_xpath(
-#                 "//div[contains(text(),'%s')]//following::button" % str(product.value))
-#             product.click()
-#         self.do_click(Locators.CART_ICON)
+    def do_logout(self):
+        self.driver.find_element_by_xpath("//a[contains(text(),'My account ')]").click()
+        time.sleep(3)
+        self.do_click(Locators.LOGOUT_BUTTON)
+    
 
-#     '''Logout'''
-#     def do_logout(self):
-#         self.do_click(Locators.BURGER_MENU_BUTTON)
-#         self.do_click(Locators.LOGOUT_BUTTON)
+

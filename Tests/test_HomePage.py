@@ -1,17 +1,59 @@
-# import sys, os
-# myPath = os.path.dirname(os.path.abspath(__file__))
-# sys.path.insert(0, myPath + '/../')
+import sys, os
+myPath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, myPath + '/../')
 
-# import time
-# import pytest
-# import allure 
-# from allure_commons.types import AttachmentType
-# from Tests.test_Base import BaseTest
-# from Config.config import TestData
-# from Pages.LoginPage import LoginPage
-# # from EnumsPackage.Enums import
+import time
+import pytest
+import allure 
+from allure_commons.types import AttachmentType
+from Tests.test_Base import BaseTest
+from Config.config import TestData
+from Pages.LoginPage import LoginPage
+from Pages.HomePage import HomePage
+# from EnumsPackage.Enums import
 
-# class Test_Home(BaseTest):
+class Test_Home(BaseTest):
+
+    @pytest.mark.order(1)
+    def test_verify_dropdown_tabs(self):
+        loginPage = LoginPage(self.driver)
+        loginPage = loginPage.do_login()
+        homePage  = HomePage(self.driver)
+        homePage.clickBeautyTab()
+        homePage.clickStationeryTab()
+        homePage.clickClothingTab()
+        homePage.clickHomeWareTab()
+        
+
+    def test_verify_homeware_tab(self):
+        loginPage = LoginPage(self.driver)
+        loginPage = loginPage.do_login()
+        homePage  = HomePage(self.driver)
+        homePage.clickHomeWareTab()
+        homePage.do_logout()
+
+    def test_verify_beauty_tab(self):
+        loginPage = LoginPage(self.driver)
+        loginPage = loginPage.do_login()
+        homePage  = HomePage(self.driver)
+        homePage.clickBeautyTab()
+        homePage.do_logout()
+
+    def test_verify_stationery_tab(self):
+        loginPage = LoginPage(self.driver)
+        loginPage = loginPage.do_login()
+        homePage  = HomePage(self.driver)
+        homePage.clickStationeryTab()
+        homePage.do_logout()
+
+    @pytest.mark.order(1)
+    def test_verify_clothing_tab(self):
+        loginPage = LoginPage(self.driver)
+        loginPage = loginPage.do_login()
+        homePage  = HomePage(self.driver)
+        homePage.clickClothingTab()
+        homePage.do_logout()
+
     
 #     '''Title'''
 #     # @pytest.mark.webtest
@@ -96,10 +138,11 @@
 #         homePage.sort_products_by_A_To_Z()
 #         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
         
-#     '''Logout'''
-#     @pytest.mark.order(13)
-#     def test_verify_logout_into_app(self):
-#         self.loginPage = LoginPage(self.driver)
-#         homePage = self.loginPage.do_login()
-#         homePage.do_logout()
-#         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
+    '''Logout'''
+    # @pytest.mark.order(13)
+    # def test_verify_logout_into_app(self):
+    #     loginPage = LoginPage(self.driver)
+    #     loginPage = loginPage.do_login()
+    #     homePage  = HomePage(self.driver)
+    #     homePage.do_logout()
+    #     allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
