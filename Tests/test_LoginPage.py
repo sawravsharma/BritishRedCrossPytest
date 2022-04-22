@@ -30,6 +30,7 @@ class Test_Login(BaseTest):
         self.loginPage.do_login()
         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
     
+    
     @pytest.mark.order(3)
     def test_verify_logout_outoff_app(self):
         self.loginPage = LoginPage(self.driver)

@@ -16,129 +16,193 @@ class Test_Home(BaseTest):
 
     @pytest.mark.order(1)
     def test_verify_dropdown_tabs(self):
-        loginPage = LoginPage(self.driver)
-        loginPage = loginPage.do_login()
+        self.loginPage = LoginPage(self.driver)
+        # loginPage = loginPage.do_login()
         homePage  = HomePage(self.driver)
         homePage.clickBeautyTab()
-        homePage.clickStationeryTab()
+        homePage.clickNewInTab()
+        homePage.clickTshirtsAndSweatShirtsTab()
+        homePage.sortingProducts()
+        homePage.clickVirtualGiftsTab()
         homePage.clickClothingTab()
         homePage.clickHomeWareTab()
-        
+        homePage.clickStationeryTab()
+        homePage.clickShopHomeTab()
+        homePage.clickVirtualGiftsTab()
+        homePage.clickSaleTab()
+
+    @pytest.mark.order()
+    def test_verify_homepage_title(self):
+        self.loginPage = LoginPage(self.driver)
+        # loginPage = loginPage.do_login()
+        homePage  = HomePage(self.driver)
+        title = homePage.get_title()
+        assert title == TestData.HOME_PAGE_TITLE
+        print(title)
+
+    @pytest.mark.Tees
+    def test_TshirtsAndSweatshirtstabs(self):
+        self.loginPage = LoginPage(self.driver)
+        # loginPage = loginPage.do_login()
+        homePage = HomePage(self.driver)
+        homePage.clickTshirtsAndSweatShirtsTab()
+
+    @pytest.mark.virtualgifts
+    def test_virtualgifts(self):
+        self.loginPage = LoginPage(self.driver)
+        # loginPage = loginPage.do_login()
+        homePage = HomePage(self.driver)
+        homePage.clickVirtualGiftsTab()
+
+    @pytest.mark.sort
+    def test_sort_clothes(self):
+        self.loginPage = LoginPage(self.driver)
+        # loginPage = loginPage.do_login()
+        homePage = HomePage(self.driver)
+        homePage.sortingProducts()
 
     def test_verify_homeware_tab(self):
-        loginPage = LoginPage(self.driver)
-        loginPage = loginPage.do_login()
+        self.loginPage = LoginPage(self.driver)
+        # loginPage = loginPage.do_login()
         homePage  = HomePage(self.driver)
         homePage.clickHomeWareTab()
         homePage.do_logout()
 
     def test_verify_beauty_tab(self):
-        loginPage = LoginPage(self.driver)
-        loginPage = loginPage.do_login()
+        self.loginPage = LoginPage(self.driver)
+        # loginPage = loginPage.do_login()
         homePage  = HomePage(self.driver)
         homePage.clickBeautyTab()
         homePage.do_logout()
 
     def test_verify_stationery_tab(self):
-        loginPage = LoginPage(self.driver)
-        loginPage = loginPage.do_login()
+        self.loginPage = LoginPage(self.driver)
+        # loginPage = loginPage.do_login()
         homePage  = HomePage(self.driver)
         homePage.clickStationeryTab()
         homePage.do_logout()
 
     @pytest.mark.order(1)
     def test_verify_clothing_tab(self):
-        loginPage = LoginPage(self.driver)
-        loginPage = loginPage.do_login()
+        self.loginPage = LoginPage(self.driver)
+        # loginPage = loginPage.do_login()
         homePage  = HomePage(self.driver)
         homePage.clickClothingTab()
         homePage.do_logout()
 
+    @pytest.mark.order()
+    def test_verify_Shop_Home_tab(self):
+        self.loginPage = LoginPage(self.driver)
+        # loginPage = loginPage.do_login()
+        homePage  = HomePage(self.driver)
+        homePage.clickShopHomeTab()
+
+    @pytest.mark.order()
+    def test_verify_New_In_tab(self):
+        self.loginPage = LoginPage(self.driver)
+        # loginPage = loginPage.do_login()
+        homePage  = HomePage(self.driver)
+        homePage.clickNewInTab()
+
+    @pytest.mark.order()
+    def test_verify_Virtual_Gifts_tab(self):
+        self.loginPage = LoginPage(self.driver)
+        # loginPage = loginPage.do_login()
+        homePage  = HomePage(self.driver)
+        homePage.clickVirtualGiftsTab()
+
+    @pytest.mark.order()
+    def test_verify_Sale_tab(self):
+        self.loginPage = LoginPage(self.driver)
+        # loginPage = loginPage.do_login()
+        homePage  = HomePage(self.driver)
+        homePage.clickSaleTab()
+
     
-#     '''Title'''
-#     # @pytest.mark.webtest
-#     @pytest.mark.order(4)
-#     def test_verify_home_page_title(self):
-#         self.loginPage = LoginPage(self.driver)
-#         homePage = self.loginPage.do_login()
-#         title = homePage.get_title()
-#         assert title == TestData.HOME_PAGE_TITLE
-#         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
-#         print(title)
+    # '''Title'''
+    # # @pytest.mark.webtest
+    # @pytest.mark.order(4)
+    # def test_verify_home_page_title(self):
+    #     self.loginPage = LoginPage(self.driver)
+    #     homePage = self.loginPage.do_login()
+    #     title = homePage.get_title()
+    #     assert title == TestData.HOME_PAGE_TITLE
+    #     allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
+    #     print(title)
 
-#     '''Header'''
-#     @pytest.mark.order(5)
-#     def test_verify_home_page_header(self): 
-#         self.loginPage = LoginPage(self.driver)
-#         homePage = self.loginPage.do_login()
-#         header = homePage.get_header_value()
-#         assert header == TestData.HOME_PAGE_HEADER
-#         allure.attach(self.driver.get_screenshot_as_png(), attachment_type=AttachmentType.JPG)
-#         print(header)
+    # '''Header'''
+    # @pytest.mark.order(5)
+    # def test_verify_home_page_header(self): 
+    #     self.loginPage = LoginPage(self.driver)
+    #     homePage = self.loginPage.do_login()
+    #     header = homePage.get_header_value()
+    #     assert header == TestData.HOME_PAGE_HEADER
+    #     allure.attach(self.driver.get_screenshot_as_png(), attachment_type=AttachmentType.JPG)
+    #     print(header)
 
-#     '''Cart Icon'''
-#     @pytest.mark.order(6)
-#     def test_verify_cart_icon_visible(self):
-#         self.loginPage = LoginPage(self.driver)
-#         homePage = self.loginPage.do_login()
-#         cart_icon = homePage.is_cart_icon_exist()
-#         assert cart_icon
-#         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.JPG)
+    # '''Cart Icon'''
+    # @pytest.mark.order(6)
+    # def test_verify_cart_icon_visible(self):
+    #     self.loginPage = LoginPage(self.driver)
+    #     homePage = self.loginPage.do_login()
+    #     cart_icon = homePage.is_cart_icon_exist()
+    #     assert cart_icon
+    #     allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.JPG)
 
-#     '''asserting products sort container'''
-#     @pytest.mark.order(7)
-#     def test_verify_product_sort_container(self):
-#         self.loginPage = LoginPage(self.driver)
-#         homePage = self.loginPage.do_login()
-#         homePage.product_sort_container()
-#         for getValue in Sort_Productss:
-#             sortingNames  = self.driver.find_element_by_xpath(
-#                      "//select[@class='product_sort_container']//option[contains(text(),'%s')]" % str(getValue.value)) 
-#             print(sortingNames)
-#             assert sortingNames.text == getValue.value
-#         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
+    # '''asserting products sort container'''
+    # @pytest.mark.order(7)
+    # def test_verify_product_sort_container(self):
+    #     self.loginPage = LoginPage(self.driver)
+    #     homePage = self.loginPage.do_login()
+    #     homePage.product_sort_container()
+    #     for getValue in Sort_Productss:
+    #         sortingNames  = self.driver.find_element_by_xpath(
+    #                  "//select[@class='product_sort_container']//option[contains(text(),'%s')]" % str(getValue.value)) 
+    #         print(sortingNames)
+    #         assert sortingNames.text == getValue.value
+    #     allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
 
-#     '''Shopping functionality'''
-#     @pytest.mark.order(8)
-#     def test_verify_shopping(self):
-#         self.loginPage = LoginPage(self.driver)
-#         homePage = self.loginPage.do_login()
-#         homePage.do_shopping()
-#         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
+    # '''Shopping functionality'''
+    # @pytest.mark.order(8)
+    # def test_verify_shopping(self):
+    #     self.loginPage = LoginPage(self.driver)
+    #     homePage = self.loginPage.do_login()
+    #     homePage.do_shopping()
+    #     allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
 
-#     '''Sorting products in Low to High range'''
-#     @pytest.mark.order(9)
-#     def test_verify_sorting_L_to_H(self):
-#         self.loginPage = LoginPage(self.driver)
-#         homePage = self.loginPage.do_login()
-#         homePage.product_sort_container_low_to_high()
-#         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
+    # '''Sorting products in Low to High range'''
+    # @pytest.mark.order(9)
+    # def test_verify_sorting_L_to_H(self):
+    #     self.loginPage = LoginPage(self.driver)
+    #     homePage = self.loginPage.do_login()
+    #     homePage.product_sort_container_low_to_high()
+    #     allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
 
-#     '''Sorting products in High to Low range'''
-#     @pytest.mark.order(10)
-#     def test_verify_sorting_H_to_L(self):
-#         self.loginPage = LoginPage(self.driver)
-#         homePage = self.loginPage.do_login()
-#         homePage.product_sort_container_High_to_Low()
-#         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
+    # '''Sorting products in High to Low range'''
+    # @pytest.mark.order(10)
+    # def test_verify_sorting_H_to_L(self):
+    #     self.loginPage = LoginPage(self.driver)
+    #     homePage = self.loginPage.do_login()
+    #     homePage.product_sort_container_High_to_Low()
+    #     allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
 
-#     '''Sorting products in Z to A name'''
-#     @pytest.mark.order(11)
-#     def test_verify_sorting_Z_To_A(self):
-#         self.loginPage = LoginPage(self.driver)
-#         homePage = self.loginPage.do_login()
-#         homePage.sort_products_by_Z_To_A()
-#         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
+    # '''Sorting products in Z to A name'''
+    # @pytest.mark.order(11)
+    # def test_verify_sorting_Z_To_A(self):
+    #     self.loginPage = LoginPage(self.driver)
+    #     homePage = self.loginPage.do_login()
+    #     homePage.sort_products_by_Z_To_A()
+    #     allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
 
-#     '''Sorting products in Z to A name'''
-#     @pytest.mark.order(12)
-#     def test_verify_sorting_A_To_Z(self):
-#         self.loginPage = LoginPage(self.driver)
-#         homePage = self.loginPage.do_login()
-#         homePage.sort_products_by_A_To_Z()
-#         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
+    # '''Sorting products in Z to A name'''
+    # @pytest.mark.order(12)
+    # def test_verify_sorting_A_To_Z(self):
+    #     self.loginPage = LoginPage(self.driver)
+    #     homePage = self.loginPage.do_login()
+    #     homePage.sort_products_by_A_To_Z()
+    #     allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
         
-    '''Logout'''
+    # '''Logout'''
     # @pytest.mark.order(13)
     # def test_verify_logout_into_app(self):
     #     loginPage = LoginPage(self.driver)
