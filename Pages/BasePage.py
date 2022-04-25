@@ -1,3 +1,5 @@
+
+from asyncio import wait
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -25,6 +27,14 @@ class BasePage:
 
     def get_title(self):
         return self.driver.title
+
+    def if_alert(self):
+        elements = self.driver.find_element_by_xpath("//button[text()='Accept Cookies']")
+        if not elements:
+            print("No element found")  
+        else:
+            self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
+    
 
 
     

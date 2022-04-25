@@ -19,6 +19,7 @@ class Test_Login(BaseTest):
     @pytest.mark.order(1)
     def test_verify_login_page_title(self):
         self.loginPage = LoginPage(self.driver)
+        self.loginPage.if_alert()
         title = self.loginPage.get_title()
         assert title == TestData.LOGIN_PAGE_TITLE
         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
@@ -28,6 +29,7 @@ class Test_Login(BaseTest):
     def test_verify_login_into_app(self):
         self.loginPage = LoginPage(self.driver)
         self.loginPage.do_login()
+        self.loginPage.if_alert()
         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
     
     
@@ -43,20 +45,21 @@ class Test_Login(BaseTest):
     @pytest.mark.order(4)
     def test_verify_login_user(self):
         self.loginPage = LoginPage(self.driver)
-        self.loginPage.do_login()
         
+        self.loginPage.do_login()
+        self.loginPage.if_alert()
         Logged_IN = self.loginPage.logged_in_user()
         assert Logged_IN == TestData.LOGGED_IN_USER
         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
 
-    '''login with incorrect credentials'''
-    @pytest.mark.order(5)
-    def test_verify_login_into_app_with_incorrect_credentials(self):
-        self.loginPage = LoginPage(self.driver)
-        self.loginPage.do_login_with_incorrect_credentials()
-        error_msg = self.loginPage.get_element_text(Locators.ERROR_MESSAGE)
-        assert error_msg == TestData.LOGIN_WITH_INCORRECT_CREDENTIALS_MESSAGE
-        allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
+    # '''login with incorrect credentials'''
+    # @pytest.mark.order(5)
+    # def test_verify_login_into_app_with_incorrect_credentials(self):
+    #     self.loginPage = LoginPage(self.driver)
+    #     self.loginPage.do_login_with_incorrect_credentials()
+    #     error_msg = self.loginPage.get_element_text(Locators.ERROR_MESSAGE)
+    #     assert error_msg == TestData.LOGIN_WITH_INCORRECT_CREDENTIALS_MESSAGE
+    #     allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
 
     # def test_everythingOfLoginPage(self):
     #     self.loginPage = LoginPage(self.driver)
