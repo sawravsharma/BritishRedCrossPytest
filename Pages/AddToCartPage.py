@@ -1,27 +1,28 @@
-# import sys, os
-# myPath = os.path.dirname(os.path.abspath(__file__))
-# sys.path.insert(0, myPath + '/../')
+import sys, os
 
-# from Locators.Locators import Locators
-# from EnumsPackage.Enums import Products
-# from Pages.BasePage import BasePage
-# from Pages.CheckoutYourInfoPage import CheckoutYourInfoPage
+myPath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, myPath + '/../')
 
-# class AddToCartPage(BasePage):
+from Locators.Locators import Locators
+from Pages.BasePage import BasePage
+from EnumsPackage.TshirtsAndSweatShirts import TshirtsAndSweatShirtsAddedInCart
 
-#         def __init__(self, driver):
-#             super().__init__(driver)
+class AddToCartPage(BasePage):
 
-#         def get_add_to_cart_page_header(self):
-#             return self.get_element_text(Locators.CART_PAGE_HEADER)
+    def __init__(self, driver):
+        super().__init__(driver)
 
-#         def is_items_exist_in_cart(self):
-#             for getValue in Products:
-#                 searchProductPresence  = self.driver.find_element_by_xpath(
-#                      "//*[contains(text(),'%s')]" % str(getValue.value))
-#             assert searchProductPresence.text == getValue.value
+        # def get_add_to_cart_page_header(self):
+        #     return self.get_element_text(Locators.CART_PAGE_HEADER)
 
-#         def do_click_checkout_button(self):
-#             self.do_click(Locators.CHECKOUT_BUTTON)
-#             return CheckoutYourInfoPage(self.driver)
+    def is_items_exist_in_cart(self):
+        self.driver.find_element_by_xpath("//*[text()='Cart']").click()
+        for getValue in TshirtsAndSweatShirtsAddedInCart:
+            searchProductPresence  = self.driver.find_element_by_xpath(
+                     "//a[contains(text(),'%s')]" % str(getValue.value))
+        print(searchProductPresence.text)
+        assert searchProductPresence.text == getValue.value
+
+    def do_click_checkout_button(self):
+        self.do_click(Locators.CHECKOUT_BUTTON)
 

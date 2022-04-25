@@ -23,28 +23,15 @@ class LoginPage(BasePage):
 
     '''this is use to login to application'''
     def do_login(self):
-            # self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
+            self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
             self.do_click(Locators.CLICK_ON_MY_ACCOUNT)
             self.do_send_keys(Locators.EMAIL, TestData.USERNAME)
             self.do_send_keys(Locators.PASSWORD, TestData.PASSWORD)
             self.do_click(Locators.LOGIN_BUTTON)
-            # self.do_click(Locators.CLOTHING_TAB)
-            # time.sleep(3)
-        # path = "TestData.xlsx"
-        # workbook = xlrd.open_workbook(path)
-        # sheet=workbook.sheet_by_name("login")
-        # rowCount = sheet.nrows
-        # for curr_row in range(1, rowCount):
-        #     username = sheet.cell_value(curr_row, 0)
-        #     password = sheet.cell_value(curr_row, 1)
-        #     self.do_send_keys(Locators.EMAIL, username)
-        #     self.do_send_keys(Locators.PASSWORD, password)
-        #     self.do_click(Locators.LOGIN_BUTTON)
-            # return HomePage(self.driver)
 
-    def logged_in_user(self):
-        # self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
-        return self.get_element_text(Locators.LOGGED_IN_USER)
+    # def logged_in_user(self):
+    #     # self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
+    #     return self.get_element_text(Locators.LOGGED_IN_USER)
     
     # '''this is use to login to application with incorrect credentials'''
     # def do_login_with_incorrect_credentials(self):

@@ -1,17 +1,18 @@
-# import sys, os
-# myPath = os.path.dirname(os.path.abspath(__file__))
-# sys.path.insert(0, myPath + '/../')
+import sys, os
 
-# import time
-# import pytest
-# import allure 
-# from allure_commons.types import AttachmentType
-# from Pages.AddToCartPage import AddToCartPage
-# from Tests.test_Base import BaseTest
-# from Config.config import TestData
-# from Pages.LoginPage import LoginPage
+from Pages.HomePage import HomePage
+myPath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, myPath + '/../')
 
-# class Test_AddTOCartPage(BaseTest):
+import time
+import pytest
+import allure 
+from allure_commons.types import AttachmentType
+from Pages.AddToCartPage import AddToCartPage
+from Tests.test_Base import BaseTest
+from Pages.LoginPage import LoginPage
+
+class Test_AddTOCartPage(BaseTest):
 
 #     '''verifying Cart Page h1 tag'''
 #     @pytest.mark.order(15)
@@ -24,12 +25,14 @@
 #         assert cart_page_header == TestData.CART_PAGE_HEADER
 #         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
 
-#     '''Verifying items added in cart'''
-#     @pytest.mark.order(14)
-#     def test_verify_item_in_cart(self):
-#         self.loginPage = LoginPage(self.driver)
-#         homePage = self.loginPage.do_login()
-#         homePage.do_shopping()
-#         addToCart = AddToCartPage(self.driver)
-#         addToCart.is_items_exist_in_cart()
-#         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
+    '''Verifying items added in cart'''
+    @pytest.mark.order(14)
+    def test_verify_item_in_cart(self):
+        self.loginPage = LoginPage(self.driver)
+        self.loginPage = LoginPage(self.driver)
+        # loginPage = loginPage.do_login()
+        homePage = HomePage(self.driver)
+        homePage.clickTshirtsAndSweatShirtsTab()
+        addToCart = AddToCartPage(self.driver)
+        addToCart.is_items_exist_in_cart()
+        allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)

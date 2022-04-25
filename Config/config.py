@@ -19,8 +19,8 @@ class TestData:
     HOME_PAGE_TITLE = "Shop charity gifts | British Red Cross Gift Shop"
     # HOME_PAGE_HEADER = "PRODUCTS"
 
-    # '''cart page'''
-    # CART_PAGE_HEADER = "YOUR CART"
+    '''cart page'''
+    CART_PAGE_HEADER = "Cart"
 
     # '''Check out your Info page'''
     # CHECKOUT_YOUR_INFO_HEADER = "CHECKOUT: YOUR INFORMATION"

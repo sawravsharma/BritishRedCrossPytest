@@ -20,7 +20,7 @@ class Locators:
     '''Homepage'''
     HOME_PAGE_TITLE = (By.XPATH, "//*[text()='Swag Labs']")
     PRODUCT_SORT_CONTAINER = (By.XPATH, "//*[@class='product_sort_container']")
-    CART_ICON = (By.XPATH, "//a[@class='shopping_cart_link']")
+    CART_ICON = (By.XPATH, "//span[@class='hidden-pocket hidden-lap']")
     COMMON_XPATH_SORT_CONTAINER = (By.XPATH, "//*[@class='product_sort_container']//option)[%s]")
     HEADER = (By.XPATH, "//span[text()='Products']")
     ADD_TO_CART_BTN = (By.XPATH, "//button[contains(text(),'Add to cart')])[%s]")
