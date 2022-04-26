@@ -14,4 +14,4 @@ class VirtualGifts(Enum):
     Full_support_for_a_refugee_arriving_in_the_UK = "Full support for a refugee arriving in the UK"
     One_on_one_advice_and_support = "One-on-one advice and support"
     A_phone_and_mobile_data_for_a_refugee = "A phone and mobile data for a refugee"
-    Wrapping_for_refugees = "Wrapping for refugees"
+    # Wrapping_for_refugees = "Wrapping for refugees"

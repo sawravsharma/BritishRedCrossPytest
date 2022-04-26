@@ -2,6 +2,6 @@ from enum import Enum
 
 
 class DisplayPerPage(Enum):
-    Display_per_page_24 = 24
-    Display_per_page_36 = 36
-    Display_per_page_48= 48
+    Display_per_page_24 = "24 per page "
+    Display_per_page_36 = "24 per page "
+    Display_per_page_48= "24 per page "

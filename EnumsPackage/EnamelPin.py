@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class EnamelPinBadges(Enum):
+class EnamelPin(Enum):
     She_Believed_Enamel_Pin = "She Believed Enamel Pin"
     Spread_Kindness_Enamel_Pin = "Spread Kindness Enamel Pin"
     Go_Get_Em_Tiger_Enamel_pin = "Go Get Em Tiger- Enamel pin"

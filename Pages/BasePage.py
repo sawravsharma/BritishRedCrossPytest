@@ -29,11 +29,15 @@ class BasePage:
         return self.driver.title
 
     def if_alert(self):
-        elements = self.driver.find_element_by_xpath("//button[text()='Accept Cookies']")
+        elements = self.driver.find_elements_by_xpath("//button[text()='Accept Cookies']")
         if not elements:
             print("No element found")  
         else:
             self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
+
+    def validate_product(product):
+        if product < 0:
+            raise ValueError("Product is not available")
     
 
 

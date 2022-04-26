@@ -3,11 +3,12 @@
 # myPath = os.path.dirname(os.path.abspath(__file__))
 # sys.path.insert(0, myPath + '/../')
 
+from ast import Assert
 import time
 import string
 import random
 
-from EnumsPackage.EnamelPinBadges import EnamelPinBadges
+from EnumsPackage.EnamelPin import EnamelPin
 from EnumsPackage.FoodDrinks import FoodAndDrinks
 from Locators.Locators import Locators
 from Pages.BasePage import BasePage
@@ -18,10 +19,9 @@ from EnumsPackage.DisplayPerPage import DisplayPerPage
 from EnumsPackage.Homeware import Homeware
 from EnumsPackage.Stationery import Stationery
 from EnumsPackage.TshirtsAndSweatShirtsSorting import TshirtsAndSweatShirtsSorting
-from EnumsPackage.VirtualGifts import VirtualGifts
 from EnumsPackage.Emolyne import Emolyne
 
-from EnumsPackage.TshirtsAndSweatShirts import TshirtsAndSweatShirts, TshirtsAndSweatShirtsAddedInCart
+from EnumsPackage.TshirtsAndSweatShirts import TshirtsAndSweatShirts
 
 class HomePage(BasePage):
  
@@ -34,11 +34,12 @@ class HomePage(BasePage):
 
     '''To check Cart icon'''
     def is_cart_icon_exist(self):
+        self.if_alert()
         return self.is_visible(Locators.CART_ICON)
 
     '''Product sorting container functionality'''
     def clickClothingTab(self):
-        # self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
+        self.if_alert()
         for sorting in Clothing:
             element = self.driver.find_element_by_link_text("Clothing")
             action = ActionChains(self.driver)
@@ -49,6 +50,7 @@ class HomePage(BasePage):
             sorting.click()
 
     def clickHomeWareTab(self):
+        self.if_alert()
         for sorting in Homeware:
             element = self.driver.find_element_by_link_text("Homeware")
             action = ActionChains(self.driver)
@@ -59,6 +61,7 @@ class HomePage(BasePage):
             sorting.click()
 
     def clickStationeryTab(self):
+        self.if_alert()
         for sorting in Stationery:
             element = self.driver.find_element_by_link_text("Stationery")
             action = ActionChains(self.driver)
@@ -69,6 +72,7 @@ class HomePage(BasePage):
             sorting.click()
 
     def clickBeautyTab(self):
+        # self.if_alert()
         for sorting in Beauty:
             element = self.driver.find_element_by_link_text("Beauty")
             action = ActionChains(self.driver)
@@ -79,64 +83,59 @@ class HomePage(BasePage):
             sorting.click()
     
     def clickShopHomeTab(self):
-        self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
+        # element_found = []
+        self.if_alert()
         self.driver.find_element_by_link_text("Shop Home")
         self.driver.find_element_by_xpath("(//a[@href='/collections/new-in'])[5]").click()
-        print(self.driver.find_element_by_xpath(
-            "24 //div[@class='product-item product-item--vertical  1/3--tablet-and-up 1/3--desk']")).size()
-
-    def clickNewInTab(self):
-        self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
-        self.driver.find_element_by_link_text("New In")
+        # select = Select(self.driver.find_elements_by_xpath("//button[@class='value-picker-button']//span[contains(text(),'Display')]"))
+        # select.select_by_visible_text("Display: 24 per page")
         self.driver.find_element_by_xpath("//button[@class='value-picker-button']//span[contains(text(),'Display')]").click()
-        for page in DisplayPerPage:
-            page = self.driver.find_element_by_xpath("//button[@data-value=%s]" % int(page.value))
-            page.click()
+        time.sleep(5)
+        self.driver.find_element_by_xpath("//*[@id='display-by-selector']/div/div/button[1]").click()
+        time.sleep(5)
+        element_found = self.driver.find_elements_by_xpath("//div[@class='product-item product-item--vertical  1/3--tablet-and-up 1/3--desk']")
+        print(len(element_found))
+        assert len(element_found) == 24
+
+    '''asserting 24 elements filter per page'''
+    def clickNewInTab(self):
+        self.if_alert()
+        self.driver.find_element_by_xpath("(//*[text()='New In '])[2]").click()
+        self.driver.find_element_by_xpath("//button[@class='value-picker-button']//span[contains(text(),'Display')]").click()
+        page = self.driver.find_element_by_xpath("//button[contains(text(),'%s')]" % str(DisplayPerPage.Display_per_page_24.value))
+        page.click()
+        element_found = self.driver.find_elements_by_xpath("//div[@class='product-item product-item--vertical  1/3--tablet-and-up 1/3--desk']")
+        print(len(element_found))
+        assert len(element_found) == 24
 
     def clickVirtualGiftsTab(self):
-        self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
+        self.if_alert()
         self.driver.find_element_by_link_text("Virtual Gifts").click()
-        for gift in VirtualGifts:
-            giftEle = self.driver.find_element_by_xpath(
-                "//span[contains(text(),'%s')]/following-sibling::a[contains(text(),'Send now')]" % str(gift.value))
-            giftEle.click()
-            print(gift)
-            self.driver.implicitly_wait(10)
-            message = self.driver.find_element_by_xpath("//*[@id='star-message']").send_keys(
-                ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(10)))
-            self.driver.find_element_by_xpath(
-                "//div[@class='product-form__payment-container']//button[text()='Add to cart']").click()
-            self.driver.find_element_by_link_text("Virtual Gifts").click()
-        print(message)
 
     def clickSaleTab(self):
+        self.if_alert()
         self.driver.find_element_by_link_text("Sale")
 
     def clickOnCartButton(self):
+        self.if_alert()
         self.driver.find_element_by_xpath("//*[text()='Cart']").click()
 
     '''Product sorting container functionality'''
     def sortingProducts(self):
-        self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
-        self.driver.find_element_by_xpath("//*[@id='shopify-section-header']/section/nav/div/div/ul/li[2]/a").click()
+        self.if_alert()
+        self.driver.find_element_by_xpath("(//*[text()='New In '])[2]").click()
+        self.driver.find_element_by_xpath("(//div[@class='value-picker-wrapper']//span[contains(text(),'Sort by')])[1]").click()
         time.sleep(5)
-        # self.driver.find_element_by_xpath("//span[contains(text(),'Sort by')]").click()
-        element = self.driver.find_element_by_xpath("//button[contains(text(),'Sort by')]")
-        action = ActionChains(self.driver)
-        action.click(on_element = element)
-        action.perform()
-        for sorting in TshirtsAndSweatShirtsSorting:
-            sorting = self.driver.find_element_by_xpath(
-                "//button[contains(text(),'%s')]" % str(sorting.value))
-            sorting.click()
+        sorting = self.driver.find_element_by_xpath(
+                "//button[contains(text(),'%s')]" % str(TshirtsAndSweatShirtsSorting.Alphabetically_A_to_Z.value))
+        sorting.click()
 
     def do_logout(self):
-        self.driver.find_element_by_xpath("//a[contains(text(),'My account ')]").click()
-        # time.sleep(3)
+        self.if_alert()
         self.do_click(Locators.LOGOUT_BUTTON)
 
     def clickTshirtsAndSweatShirtsTab(self):
-        self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
+        self.if_alert()
         element = self.driver.find_element_by_link_text("Clothing")
         action = ActionChains(self.driver)
         action.click(on_element = element)
@@ -159,7 +158,7 @@ class HomePage(BasePage):
             Tees.click()
 
     def addProductsOfEnamelPinBadgesinCart(self):
-        self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
+        self.if_alert()
         element = self.driver.find_element_by_link_text("Stationery")
         action = ActionChains(self.driver)
         action.click(on_element = element)
@@ -167,7 +166,7 @@ class HomePage(BasePage):
         Tees = self.driver.find_element_by_xpath(
             "//li[@class='nav-dropdown__item ']//a[contains(text(),'%s')]" % str(Stationery.Stationery_Name_EnamelPinBadges.value))
         Tees.click()
-        for pins in EnamelPinBadges:
+        for pins in EnamelPin:
             cloth = self.driver.find_element_by_xpath("//a[contains(text(),'%s')]" % str(pins.value))
             cloth.click()
             time.sleep(3)
@@ -182,7 +181,7 @@ class HomePage(BasePage):
             Tees.click()
 
     def addFoodAndDrinksInCart(self):
-        self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
+        self.if_alert()
         element = self.driver.find_element_by_link_text("Homeware")
         action = ActionChains(self.driver)
         action.click(on_element = element)
@@ -205,7 +204,7 @@ class HomePage(BasePage):
             foods.click()
 
     def addEmolyneItemsInCart(self):
-        self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
+        self.if_alert()
         element = self.driver.find_element_by_link_text("Beauty")
         action = ActionChains(self.driver)
         action.click(on_element = element)
@@ -227,33 +226,7 @@ class HomePage(BasePage):
                 "//li[@class='nav-dropdown__item ']//a[contains(text(),'%s')]" % str(Beauty.Beauty_Name_Emolyne.value))
             foods.click()
 
-    def is_items_exist_in_cart(self):
-        self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
-        element = self.driver.find_element_by_link_text("Clothing")
-        action = ActionChains(self.driver)
-        action.click(on_element = element)
-        action.perform()
-        Tees = self.driver.find_element_by_xpath(
-            "//li[@class='nav-dropdown__item ']//a[contains(text(),'%s')]" % str(Clothing.CLOTHING_Name_TShirt.value))
-        Tees.click()
-        for cloth in TshirtsAndSweatShirts:
-            cloth = self.driver.find_element_by_xpath("//a[contains(text(),'%s')]" % str(cloth.value))
-            cloth.click()
-            self.driver.find_element_by_xpath(
-                "//div[@class='product-form__payment-container']//button[text()='Add to cart']").click()
-            element = self.driver.find_element_by_link_text("Clothing")
-            action = ActionChains(self.driver)
-            action.click(on_element = element)
-            action.perform()
-            Tees = self.driver.find_element_by_xpath(
-                "//li[@class='nav-dropdown__item ']//a[contains(text(),'%s')]" % str(Clothing.CLOTHING_Name_TShirt.value))
-            Tees.click()
-        self.driver.find_element_by_xpath("//*[text()='Cart']").click()
-        for getValue in TshirtsAndSweatShirtsAddedInCart:
-            searchProductPresence  = self.driver.find_element_by_xpath(
-                     "//a[contains(text(),'%s')]" % str(getValue.value))
-        print(searchProductPresence.text)
-        assert searchProductPresence.text == getValue.value
+
     
 
 

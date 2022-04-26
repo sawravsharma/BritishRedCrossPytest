@@ -10,20 +10,14 @@ from Tests.test_Base import BaseTest
 from Config.config import TestData
 from Pages.LoginPage import LoginPage
 from Pages.HomePage import HomePage
-# from EnumsPackage.Enums import
 
 class Test_Home(BaseTest):
 
     # @pytest.mark.order(1)
-    def test_verify_dropdown_tabs(self):
-        self.loginPage = LoginPage(self.driver)
-        # loginPage = loginPage.do_login()
-        homePage  = HomePage(self.driver)
-    #     homePage.clickOnCartButton()
-        homePage.is_items_exist_in_cart()
-    #     homePage.addEmolyneItemsInCart()
-    #     homePage.addProductsOfEnamelPinBadgesinCart()
-    #     homePage.addFoodAndDrinksInCart()
+    # def test_verify_dropdown_tabs(self):
+    #     self.loginPage = LoginPage(self.driver)
+    #     homePage  = HomePage(self.driver)
+    #     homePage.is_items_exist_in_cart() /// add to cart page
     #     homePage.clickBeautyTab()
     #     homePage.clickNewInTab()
     #     homePage.clickTshirtsAndSweatShirtsTab()
@@ -36,81 +30,59 @@ class Test_Home(BaseTest):
     #     homePage.clickVirtualGiftsTab()
     #     homePage.clickSaleTab()
 
-    @pytest.mark.order()
-    def test_verify_homepage_title(self):
+    def test_click_on_addToCart_btn(self):
         self.loginPage = LoginPage(self.driver)
-        # loginPage = loginPage.do_login()
         homePage  = HomePage(self.driver)
-        title = homePage.get_title()
-        assert title == TestData.HOME_PAGE_TITLE
-        print(title)
+        homePage.clickOnCartButton()
 
-    @pytest.mark.Tees
-    def test_TshirtsAndSweatshirtstabs(self):
-        self.loginPage = LoginPage(self.driver)
-        # loginPage = loginPage.do_login()
-        homePage = HomePage(self.driver)
-        homePage.clickTshirtsAndSweatShirtsTab()
-
-    @pytest.mark.virtualgifts
     def test_virtualgifts(self):
         self.loginPage = LoginPage(self.driver)
-        # loginPage = loginPage.do_login()
         homePage = HomePage(self.driver)
         homePage.clickVirtualGiftsTab()
 
     @pytest.mark.sort
     def test_sort_clothes(self):
         self.loginPage = LoginPage(self.driver)
-        # loginPage = loginPage.do_login()
         homePage = HomePage(self.driver)
         homePage.sortingProducts()
 
     @pytest.mark.homeware
     def test_verify_homeware_tab(self):
         self.loginPage = LoginPage(self.driver)
-        # loginPage = loginPage.do_login()
         homePage  = HomePage(self.driver)
         homePage.clickHomeWareTab()
-        homePage.do_logout()
 
     @pytest.mark.beauty
     def test_verify_beauty_tab(self):
         self.loginPage = LoginPage(self.driver)
-        # loginPage = loginPage.do_login()
         homePage  = HomePage(self.driver)
         homePage.clickBeautyTab()
-        homePage.do_logout()
 
     @pytest.mark.stationery
     def test_verify_stationery_tab(self):
         self.loginPage = LoginPage(self.driver)
-        # loginPage = loginPage.do_login()
         homePage  = HomePage(self.driver)
         homePage.clickStationeryTab()
-        homePage.do_logout()
 
-    @pytest.mark.order(1)
+    @pytest.mark.order()
     @pytest.mark.clothing
     def test_verify_clothing_tab(self):
         self.loginPage = LoginPage(self.driver)
         # loginPage = loginPage.do_login()
         homePage  = HomePage(self.driver)
         homePage.clickClothingTab()
-        homePage.do_logout()
 
     @pytest.mark.order
     @pytest.mark.shopHome
     def test_verify_Shop_Home_tab(self):
         self.loginPage = LoginPage(self.driver)
-        # loginPage = loginPage.do_login()
         homePage  = HomePage(self.driver)
         homePage.clickShopHomeTab()
 
+    @pytest.mark.newIn
     @pytest.mark.order()
     def test_verify_New_In_tab(self):
         self.loginPage = LoginPage(self.driver)
-        # loginPage = loginPage.do_login()
         homePage  = HomePage(self.driver)
         homePage.clickNewInTab()
 
@@ -119,34 +91,22 @@ class Test_Home(BaseTest):
     @pytest.mark.order()
     def test_verify_Sale_tab(self):
         self.loginPage = LoginPage(self.driver)
-        # loginPage = loginPage.do_login()
         homePage  = HomePage(self.driver)
         homePage.clickSaleTab()
 
     
     '''Title'''
-    # @pytest.mark.webtest
-    @pytest.mark.order(4)
+    @pytest.mark.order()
     def test_verify_home_page_title(self):
         self.loginPage = LoginPage(self.driver)
-        homePage = self.loginPage.do_login()
+        homePage = HomePage(self.driver)
         title = homePage.get_title()
         assert title == TestData.HOME_PAGE_TITLE
         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
         print(title)
 
-    '''Header'''
-    @pytest.mark.order(5)
-    def test_verify_home_page_header(self): 
-        self.loginPage = LoginPage(self.driver)
-        homePage = self.loginPage.do_login()
-        header = homePage.get_header_value()
-        assert header == TestData.HOME_PAGE_HEADER
-        allure.attach(self.driver.get_screenshot_as_png(), attachment_type=AttachmentType.JPG)
-        print(header)
-
     '''Cart Icon'''
-    @pytest.mark.order(6)
+    @pytest.mark.order()
     def test_verify_cart_icon_visible(self):
         self.loginPage = LoginPage(self.driver)
         homePage  = HomePage(self.driver)
@@ -154,26 +114,12 @@ class Test_Home(BaseTest):
         assert cart_icon 
         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.JPG)
 
-    # '''asserting products sort container'''
-    # @pytest.mark.order(7)
-    # def test_verify_product_sort_container(self):
-    #     self.loginPage = LoginPage(self.driver)
-    #     homePage = self.loginPage.do_login()
-    #     homePage.product_sort_container()
-    #     for getValue in Sort_Productss:
-    #         sortingNames  = self.driver.find_element_by_xpath(
-    #                  "//select[@class='product_sort_container']//option[contains(text(),'%s')]" % str(getValue.value)) 
-    #         print(sortingNames)
-    #         assert sortingNames.text == getValue.value
-    #     allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
 
-    # '''Shopping functionality'''
-    # @pytest.mark.order(8)
-    # def test_verify_shopping(self):
-    #     self.loginPage = LoginPage(self.driver)
-    #     homePage = self.loginPage.do_login()
-    #     homePage.do_shopping()
-    #     allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
+
+
+
+
+
 
     # '''Sorting products in Low to High range'''
     # @pytest.mark.order(9)
@@ -199,19 +145,10 @@ class Test_Home(BaseTest):
     #     homePage.sort_products_by_Z_To_A()
     #     allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
 
-    # '''Sorting products in Z to A name'''
+    # '''Sorting products in A to Z name'''
     # @pytest.mark.order(12)
     # def test_verify_sorting_A_To_Z(self):
     #     self.loginPage = LoginPage(self.driver)
     #     homePage = self.loginPage.do_login()
     #     homePage.sort_products_by_A_To_Z()
-    #     allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
-        
-    # '''Logout'''
-    # @pytest.mark.order(13)
-    # def test_verify_logout_into_app(self):
-    #     loginPage = LoginPage(self.driver)
-    #     loginPage = loginPage.do_login()
-    #     homePage  = HomePage(self.driver)
-    #     homePage.do_logout()
     #     allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)

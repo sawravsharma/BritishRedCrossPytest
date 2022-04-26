@@ -15,10 +15,6 @@ class LoginPage(BasePage):
         self.driver.get(TestData.BASE_URL)
 
     '''Page Actions for login page'''
-    '''this method is use to get the page title'''
-    def get_login_page_title(self, title):
-        # self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
-        return self.get_title(title)
 
     '''this is use to login to application'''
 
@@ -26,11 +22,13 @@ class LoginPage(BasePage):
         self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
 
     def do_login(self):
-            self.do_click(Locators.CLICK_ON_MY_ACCOUNT)
-            self.do_send_keys(Locators.EMAIL, TestData.USERNAME)
-            self.do_send_keys(Locators.PASSWORD, TestData.PASSWORD)
-            self.do_click(Locators.LOGIN_BUTTON)
-    
-    def do_logout(self):
+        self.if_alert()
         self.do_click(Locators.CLICK_ON_MY_ACCOUNT)
-        self.do_click(Locators.LOGOUT_BUTTON)
+        self.do_send_keys(Locators.EMAIL, TestData.USERNAME)
+        self.do_send_keys(Locators.PASSWORD, TestData.PASSWORD)
+        self.do_click(Locators.LOGIN_BUTTON)
+    
+    # def do_logout(self):
+    #     self.if_alert()
+    #     self.do_click(Locators.CLICK_ON_MY_ACCOUNT)
+    #     self.do_click(Locators.LOGOUT_BUTTON)

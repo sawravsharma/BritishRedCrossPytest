@@ -30,19 +30,3 @@ class Locators:
     '''Cart page'''
     CART_PAGE_HEADER = (By.XPATH, "//span[text()='Your Cart']")
     CHECKOUT_BUTTON = (By.XPATH, "//button[text()='Checkout']")
-
-    '''CHECKOUT: YOUR INFORMATION'''
-    CHECKOUT_YOUR_INFO_PAGE_HEADER = (By.XPATH, "//*[text()='Checkout: Your Information']")
-    FIRST_NAME = (By.XPATH, "(//*[@class='input_error form_input'])[1]")
-    LAST_NAME = (By.XPATH, "(//*[@class='input_error form_input'])[2]")
-    ZIP_POSTAL_CODE = (By.XPATH, "(//*[@class='input_error form_input'])[3]")
-    CONTINUE_BUTTON = (By.XPATH, "//*[@id='continue']")
-
-    '''Checkout overview page'''
-    CHECKOUT_OVERVIEW_PAGE_HEADER = (By.XPATH, "//*[text()='Checkout: Overview']")
-    FINISH_BUTTON = (By.XPATH, "//button[text()='Finish']")
-
-    '''Checkout complete page'''
-    CHECKOUT_COMPLETE_PAGE_HEADER = (By.XPATH, "//h2[text()='THANK YOU FOR YOUR ORDER']")
-    CHECKOUT_COMPLETE_PAGE_ORDER_MESSAGE = (By.XPATH, "//*[contains(text(),'Your order has been dispatched')]")
-    BACK_HOME_BUTTON = (By.XPATH, "//button[@id='back-to-products']")

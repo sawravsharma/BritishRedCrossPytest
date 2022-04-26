@@ -14,43 +14,33 @@ from Locators.Locators import Locators
 
 class Test_Login(BaseTest):
 
-    '''verifying login page title'''
-    @pytest.mark.webtest
-    @pytest.mark.order(1)
-    def test_verify_login_page_title(self):
-        self.loginPage = LoginPage(self.driver)
-        self.loginPage.if_alert()
-        title = self.loginPage.get_title()
-        assert title == TestData.LOGIN_PAGE_TITLE
-        allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
 
     '''login with correct credentials'''
     @pytest.mark.order(2)
     def test_verify_login_into_app(self):
         self.loginPage = LoginPage(self.driver)
         self.loginPage.do_login()
-        self.loginPage.if_alert()
         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
     
     
-    @pytest.mark.order(3)
-    def test_verify_logout_outoff_app(self):
-        self.loginPage = LoginPage(self.driver)
-        self.loginPage.do_login()
-        time.sleep(3)
-        self.loginPage.do_logout()
-        allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
+    # @pytest.mark.order(3)
+    # def test_verify_logout_outoff_app(self):
+    #     self.loginPage = LoginPage(self.driver)
+    #     self.loginPage.do_login()
+    #     time.sleep(3)
+    #     self.loginPage.do_logout()
+    #     allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
         
 
-    @pytest.mark.order(4)
-    def test_verify_login_user(self):
-        self.loginPage = LoginPage(self.driver)
+    # @pytest.mark.order(4)
+    # def test_verify_login_user(self):
+    #     self.loginPage = LoginPage(self.driver)
         
-        self.loginPage.do_login()
-        self.loginPage.if_alert()
-        Logged_IN = self.loginPage.logged_in_user()
-        assert Logged_IN == TestData.LOGGED_IN_USER
-        allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
+    #     self.loginPage.do_login()
+    #     self.loginPage.if_alert()
+    #     Logged_IN = self.loginPage.logged_in_user()
+    #     assert Logged_IN == TestData.LOGGED_IN_USER
+    #     allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
 
     # '''login with incorrect credentials'''
     # @pytest.mark.order(5)
