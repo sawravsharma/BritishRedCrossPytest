@@ -1,3 +1,0 @@
-<selenium.webdriver.remote.webelement.WebElement (session="774e43f57e6bfe7504e3808583fbe8d8", element="18db818e-6465-450a-ae9e-82ae82dd7489")>
-<selenium.webdriver.remote.webelement.WebElement (session="774e43f57e6bfe7504e3808583fbe8d8", element="1b52c935-3f6b-422b-9f0f-4edefe37d388")>
-<selenium.webdriver.remote.webelement.WebElement (session="774e43f57e6bfe7504e3808583fbe8d8", element="5cddc5d7-681c-4278-be88-39499082360a")>

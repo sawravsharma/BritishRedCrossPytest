@@ -1,6 +1,5 @@
 from enum import Enum
 
-
 class EnamelPin(Enum):
     She_Believed_Enamel_Pin = "She Believed Enamel Pin"
     Spread_Kindness_Enamel_Pin = "Spread Kindness Enamel Pin"

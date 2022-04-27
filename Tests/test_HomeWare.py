@@ -1,3 +1,5 @@
+import allure 
+from allure_commons.types import AttachmentType
 import pytest
 from Pages.HomeWare import HomewareTab
 from Pages.LoginPage import LoginPage
@@ -10,3 +12,4 @@ class Test_HomeWare(BaseTest):
         self.loginPage = LoginPage(self.driver)
         homeWare = HomewareTab(self.driver)
         homeWare.addFoodAndDrinksInCart()
+        allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)

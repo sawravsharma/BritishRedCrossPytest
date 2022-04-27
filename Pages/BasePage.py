@@ -35,10 +35,6 @@ class BasePage:
         else:
             self.driver.find_element_by_xpath("//button[text()='Accept Cookies']").click()
 
-    def validate_product(product):
-        if product < 0:
-            raise ValueError("Product is not available")
-    
 
 
     

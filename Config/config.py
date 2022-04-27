@@ -17,20 +17,3 @@ class TestData:
 
     '''homepage'''
     HOME_PAGE_TITLE = "Shop charity gifts | British Red Cross Gift Shop"
-    # HOME_PAGE_HEADER = "PRODUCTS"
-
-    '''cart page'''
-    CART_PAGE_HEADER = "Cart"
-
-    # '''Check out your Info page'''
-    # CHECKOUT_YOUR_INFO_HEADER = "CHECKOUT: YOUR INFORMATION"
-    # FIRST_NAME = "The"
-    # LAST_NAME = "Rock"
-    # POSTAL_CODE = 1234
-
-    # '''Checkout overview page'''
-    # CHECKOUT_OVERVIEW_HEADER = "CHECKOUT: OVERVIEW"
-
-    # '''Checkout complete page'''
-    # CHECKOUT_COMPLETE_PAGE_HEADER = "THANK YOU FOR YOUR ORDER"
-    # CHECKOUT_COMPLETE_PAGE_ORDER_MESSAGE = "Your order has been dispatched, and will arrive just as fast as the pony can get there!"

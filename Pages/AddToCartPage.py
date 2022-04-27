@@ -1,4 +1,6 @@
 import sys, os
+
+import pytest
 myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')
 
@@ -16,14 +18,8 @@ class AddToCartPage(BasePage):
     def get_add_to_cart_page_header(self):
             return self.get_element_text(Locators.CART_PAGE_HEADER)
 
-    # def is_items_exist_in_cart(self):
-    #     self.driver.find_element_by_xpath("//*[text()='Cart']").click()
-    #     for getValue in TshirtsAndSweatShirtsAddedInCart:
-    #         searchProductPresence  = self.driver.find_element_by_xpath(
-    #                  "//a[contains(text(),'%s')]" % str(getValue.value))
-    #     print(searchProductPresence.text)
-    #     assert searchProductPresence.text == getValue.value
-
+    @pytest.mark.xfail
+    @pytest.mark.expectingFailure
     def is_items_exist_in_cart(self):
         self.if_alert()
         element = self.driver.find_element_by_link_text("Clothing")
