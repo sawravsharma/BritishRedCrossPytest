@@ -8,15 +8,16 @@ import pytest
 from Locators.Locators import Locators
 from allure_commons.types import AttachmentType
 from Tests.test_Base import BaseTest
-from Config.config import TestData
 from Pages.LoginPage import LoginPage 
 from Locators.Locators import Locators
+from allure import severity, severity_level
 
 class Test_Login(BaseTest):
 
 
-    '''login with correct credentials'''
-    @pytest.mark.order(2)
+    # @allure.description('''Login with correct credentials''')
+    @pytest.mark.order()
+    @severity(severity_level.CRITICAL)
     def test_verify_login_into_app(self):
         self.loginPage = LoginPage(self.driver)
         self.loginPage.do_login()

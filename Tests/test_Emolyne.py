@@ -8,6 +8,7 @@ from Tests.test_Base import BaseTest
 
 class Test_EmolyneTab(BaseTest):
     @pytest.mark.emolyne
+    # @allure.description('''Verifying Emolyne items are getting added in the Cart or not''')
     def test_addingEmolyneItemsInCart(self):
         self.loginPage = LoginPage(self.driver)
         emolyne = BeautyTab(self.driver)

@@ -8,6 +8,7 @@ from Tests.test_Base import BaseTest
 
 class Test_VirtualGifts(BaseTest):
     @pytest.mark.virtualgifts
+    # @allure.description('''Adding virtual gifts in cart''')
     def test_addingVirtualGiftsInCart(self):
         self.loginPage = LoginPage(self.driver)
         virtualGift = VirtualGiftsTab(self.driver)

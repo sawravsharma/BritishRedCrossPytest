@@ -8,6 +8,7 @@ from Tests.test_Base import BaseTest
 
 class Test_HomeWare(BaseTest):
     @pytest.mark.foodDrinks
+    # @allure.description('''Verifying food and drinks products are getting added in the cart or not''')
     def test_TshirtsAndSweatshirtstabs(self):
         self.loginPage = LoginPage(self.driver)
         homeWare = HomewareTab(self.driver)

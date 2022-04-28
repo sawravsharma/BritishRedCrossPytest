@@ -5,7 +5,6 @@ sys.path.insert(0, myPath + '/../')
 import time
 import pytest
 import allure 
-from Pages.HomePage import HomePage
 from allure_commons.types import AttachmentType
 from Pages.AddToCartPage import AddToCartPage
 from Pages.LoginPage import LoginPage
@@ -13,9 +12,9 @@ from Tests.test_Base import BaseTest
 
 class Test_AddTOCartPage(BaseTest):
 
-    '''Verifying items added in cart'''
+    # @allure.description('''Verifying items added in cart''')
     @pytest.mark.addToCart
-    @pytest.mark.order(14)
+    @pytest.mark.order()
     def test_verify_item_in_cart(self):
         self.loginPage = LoginPage(self.driver)
         addToCart = AddToCartPage(self.driver)

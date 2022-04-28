@@ -13,26 +13,22 @@ from Pages.HomePage import HomePage
 
 class Test_Home(BaseTest):
 
+    # @allure.description('''Verifying Add to Cart button is clickable or not''')
     def test_click_on_addToCart_btn(self):
         self.loginPage = LoginPage(self.driver)
         homePage  = HomePage(self.driver)
         homePage.clickOnCartButton()
         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
 
+    # @allure.description('''Verifying Virtual gifts tab is clickable or not''')
     def test_virtualgifts(self):
         self.loginPage = LoginPage(self.driver)
         homePage = HomePage(self.driver)
         homePage.clickVirtualGiftsTab()
         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
 
-    @pytest.mark.sort
-    def test_sort_clothes(self):
-        self.loginPage = LoginPage(self.driver)
-        homePage = HomePage(self.driver)
-        homePage.sortingProducts()
-        allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
-
     @pytest.mark.homeware
+    # @allure.description('''Verifying Homeware tab is clickable or not''')
     def test_verify_homeware_tab(self):
         self.loginPage = LoginPage(self.driver)
         homePage  = HomePage(self.driver)
@@ -40,6 +36,7 @@ class Test_Home(BaseTest):
         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
 
     @pytest.mark.beauty
+    # @allure.description('''Verifying Beauty tab is clickable or not''')
     def test_verify_beauty_tab(self):
         self.loginPage = LoginPage(self.driver)
         homePage  = HomePage(self.driver)
@@ -47,6 +44,7 @@ class Test_Home(BaseTest):
         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
 
     @pytest.mark.stationery
+    # @allure.description('''Verifying Stationery tab is clickable or not''')
     def test_verify_stationery_tab(self):
         self.loginPage = LoginPage(self.driver)
         homePage  = HomePage(self.driver)
@@ -55,6 +53,7 @@ class Test_Home(BaseTest):
 
     @pytest.mark.order()
     @pytest.mark.clothing
+    # @allure.description('''Verifying Clothing tab is clickable or not''')
     def test_verify_clothing_tab(self):
         self.loginPage = LoginPage(self.driver)
         homePage  = HomePage(self.driver)
@@ -63,6 +62,7 @@ class Test_Home(BaseTest):
 
     @pytest.mark.order
     @pytest.mark.shopHome
+    # @allure.description('''Verifying Shop Home tab is clickable or not''')
     def test_verify_Shop_Home_tab(self):
         self.loginPage = LoginPage(self.driver)
         homePage  = HomePage(self.driver)
@@ -71,6 +71,7 @@ class Test_Home(BaseTest):
 
     @pytest.mark.newIn
     @pytest.mark.order()
+    # @allure.description('''Verifying New In tab is clickable or not''')
     def test_verify_New_In_tab(self):
         self.loginPage = LoginPage(self.driver)
         homePage  = HomePage(self.driver)
@@ -79,13 +80,14 @@ class Test_Home(BaseTest):
 
     @pytest.mark.sale
     @pytest.mark.order()
+    # @allure.description('''Verifying Sale tab is clickable or not''')
     def test_verify_Sale_tab(self):
         self.loginPage = LoginPage(self.driver)
         homePage  = HomePage(self.driver)
         homePage.clickSaleTab()
         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
     
-    '''Asserting Title'''
+    # @allure.description('''Asserting Title''')
     @pytest.mark.order()
     def test_verify_home_page_title(self):
         self.loginPage = LoginPage(self.driver)
@@ -94,7 +96,7 @@ class Test_Home(BaseTest):
         assert title == TestData.HOME_PAGE_TITLE
         allure.attach(self.driver.get_screenshot_as_png(),attachment_type=AttachmentType.PNG)
 
-    '''Cart Icon exist or not'''
+    # @allure.description('''Verifying Cart Icon exist or not''')
     @pytest.mark.order()
     def test_verify_cart_icon_visible(self):
         self.loginPage = LoginPage(self.driver)

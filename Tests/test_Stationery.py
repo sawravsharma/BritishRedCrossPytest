@@ -8,6 +8,7 @@ from Tests.test_Base import BaseTest
 
 class Test_StationeryTab(BaseTest):
     @pytest.mark.enamelPins
+    # @allure.description('''Adding Enamel pins in cart''')
     def test_addingEnamelPinsInCart(self):
         self.loginPage = LoginPage(self.driver)
         enamel = StationeryTab(self.driver)
